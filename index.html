@@ -1,0 +1,5968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NANA | Premium General Store</title>
+    <meta name="description" content="NANA General Store - Fresh groceries, beverages, snacks and household essentials delivered to your doorstep.">
+    <meta name="keywords" content="Nana General Store, grocery store Pakistan, online grocery, Karachi grocery">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        /* =========================================================
+           NANA GENERAL STORE
+           PREMIUM SINGLE PAGE UI
+        ========================================================= */
+
+        :root {
+            --primary: #087f5b;
+            --primary-dark: #056044;
+            --primary-deep: #063b2e;
+            --primary-soft: #e9f8f2;
+
+            --accent: #ffbd27;
+            --accent-dark: #eaa800;
+
+            --dark: #10231d;
+            --text: #40504a;
+            --muted: #78847f;
+
+            --white: #ffffff;
+            --bg: #f7faf8;
+            --border: #e6eeea;
+
+            --danger: #ef4444;
+
+            --radius-sm: 12px;
+            --radius-md: 18px;
+            --radius-lg: 28px;
+
+            --shadow-sm: 0 8px 25px rgba(16, 35, 29, .06);
+            --shadow-md: 0 15px 45px rgba(16, 35, 29, .10);
+            --shadow-lg: 0 25px 70px rgba(16, 35, 29, .15);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "DM Sans", sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .brand-name {
+            font-family: "Manrope", sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font-family: inherit;
+        }
+
+        ::selection {
+            background: var(--primary);
+            color: white;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #edf2ef;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 20px;
+        }
+
+        /* =========================================================
+           LOADER
+        ========================================================= */
+
+        #pageLoader {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: var(--primary-deep);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .5s ease;
+        }
+
+        .loader-box {
+            text-align: center;
+            color: white;
+        }
+
+        .loader-logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 22px;
+            background: var(--accent);
+            color: var(--primary-deep);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: auto;
+            animation: loaderPulse 1.2s infinite;
+        }
+
+        .loader-box h3 {
+            margin-top: 18px;
+            font-weight: 800;
+        }
+
+        .loader-line {
+            width: 130px;
+            height: 3px;
+            background: rgba(255,255,255,.2);
+            margin: 15px auto 0;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .loader-line span {
+            display: block;
+            height: 100%;
+            width: 45%;
+            background: var(--accent);
+            animation: loaderLine 1s infinite;
+        }
+
+        @keyframes loaderPulse {
+            0%,100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        @keyframes loaderLine {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(300%);
+            }
+        }
+
+        /* =========================================================
+           TOP BAR
+        ========================================================= */
+
+        .top-bar {
+            background: var(--primary-deep);
+            color: #d9eee7;
+            font-size: 13px;
+            padding: 9px 0;
+        }
+
+        .top-bar strong {
+            color: var(--accent);
+        }
+
+        .top-bar a {
+            color: white;
+            margin-left: 18px;
+            transition: .2s;
+        }
+
+        .top-bar a:hover {
+            color: var(--accent);
+        }
+
+        /* =========================================================
+           NAVBAR
+        ========================================================= */
+
+        .main-navbar {
+            background: rgba(255,255,255,.94);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(230,238,234,.8);
+            transition: .3s ease;
+            z-index: 1000;
+        }
+
+        .main-navbar.scrolled {
+            box-shadow: 0 10px 35px rgba(16,35,29,.08);
+        }
+
+        .navbar {
+            min-height: 78px;
+        }
+
+        .brand-wrap {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .brand-icon {
+            width: 46px;
+            height: 46px;
+            background: var(--primary);
+            color: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 10px 25px rgba(8,127,91,.22);
+        }
+
+        .brand-name {
+            font-size: 21px;
+            font-weight: 800;
+            color: var(--primary-deep);
+            line-height: 1;
+        }
+
+        .brand-subtitle {
+            display: block;
+            font-size: 9px;
+            color: var(--accent-dark);
+            letter-spacing: 2px;
+            font-weight: 800;
+            margin-top: 5px;
+        }
+
+        .nav-link {
+            color: #44524d !important;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 10px 13px !important;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 13px;
+            right: 13px;
+            bottom: 2px;
+            height: 2px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: .25s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary) !important;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-icon-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: white;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .25s;
+            position: relative;
+        }
+
+        .nav-icon-btn:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            background: var(--primary-soft);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -4px;
+            right: -3px;
+            min-width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--primary-deep);
+            font-size: 10px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+
+        .btn-primary-custom {
+            background: var(--primary);
+            color: white;
+            border: 0;
+            border-radius: 12px;
+            padding: 11px 19px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: .25s;
+        }
+
+        .btn-primary-custom:hover {
+            background: var(--primary-dark);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(8,127,91,.2);
+        }
+
+        /* =========================================================
+           SEARCH
+        ========================================================= */
+
+        .search-box {
+            position: relative;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 100%;
+            border: 1px solid var(--border);
+            background: #f7faf8;
+            border-radius: 50px;
+            padding: 12px 45px 12px 43px;
+            outline: none;
+            font-size: 13px;
+            transition: .25s;
+        }
+
+        .search-box input:focus {
+            background: white;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(8,127,91,.08);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 17px;
+            top: 14px;
+            color: var(--muted);
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero-section {
+            padding: 35px 0 30px;
+        }
+
+        .hero-card {
+            min-height: 500px;
+            border-radius: 34px;
+            overflow: hidden;
+            position: relative;
+            background:
+                linear-gradient(100deg,
+                rgba(3,46,35,.98) 0%,
+                rgba(4,82,60,.92) 43%,
+                rgba(4,82,60,.35) 100%),
+                url("https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1800&q=85");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero-pattern {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 80% 20%, rgba(255,189,39,.16), transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(255,255,255,.08), transparent 30%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 70px;
+            max-width: 730px;
+            color: white;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.18);
+            color: #fff;
+            border-radius: 50px;
+            padding: 8px 13px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(8px);
+            margin-bottom: 22px;
+        }
+
+        .hero-badge span {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            box-shadow: 0 0 0 5px rgba(74,222,128,.12);
+        }
+
+        .hero-title {
+            font-size: clamp(38px, 5vw, 70px);
+            line-height: 1.03;
+            letter-spacing: -3px;
+            font-weight: 800;
+            margin-bottom: 22px;
+        }
+
+        .hero-title .highlight {
+            color: var(--accent);
+        }
+
+        .hero-description {
+            color: rgba(255,255,255,.78);
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 570px;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn-primary {
+            background: var(--accent);
+            color: var(--primary-deep);
+            padding: 14px 23px;
+            border-radius: 13px;
+            font-size: 14px;
+            font-weight: 800;
+            border: 0;
+            transition: .25s;
+        }
+
+        .hero-btn-primary:hover {
+            background: #ffd15d;
+            color: var(--primary-deep);
+            transform: translateY(-3px);
+        }
+
+        .hero-btn-secondary {
+            background: rgba(255,255,255,.1);
+            color: white;
+            padding: 14px 23px;
+            border-radius: 13px;
+            font-size: 14px;
+            font-weight: 700;
+            border: 1px solid rgba(255,255,255,.22);
+            transition: .25s;
+            backdrop-filter: blur(8px);
+        }
+
+        .hero-btn-secondary:hover {
+            background: white;
+            color: var(--primary-deep);
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 42px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,.14);
+        }
+
+        .hero-stat strong {
+            display: block;
+            color: white;
+            font-size: 20px;
+            font-family: "Manrope";
+        }
+
+        .hero-stat span {
+            font-size: 11px;
+            color: rgba(255,255,255,.6);
+        }
+
+        /* =========================================================
+           TRUST STRIP
+        ========================================================= */
+
+        .trust-strip {
+            padding: 20px 0 45px;
+        }
+
+        .trust-grid {
+            background: white;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            border-radius: 22px;
+            padding: 18px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 8px 15px;
+        }
+
+        .trust-icon {
+            width: 43px;
+            height: 43px;
+            flex-shrink: 0;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-soft);
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        .trust-item h6 {
+            margin: 0 0 3px;
+            font-weight: 800;
+            font-size: 13px;
+            color: var(--dark);
+        }
+
+        .trust-item p {
+            margin: 0;
+            font-size: 10px;
+            color: var(--muted);
+        }
+
+        /* =========================================================
+           SECTION HEAD
+        ========================================================= */
+
+        .section-padding {
+            padding: 85px 0;
+        }
+
+        .section-label {
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        .section-title {
+            color: var(--dark);
+            font-size: clamp(29px, 4vw, 43px);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.12;
+            margin-bottom: 15px;
+        }
+
+        .section-description {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.8;
+            max-width: 620px;
+        }
+
+        /* =========================================================
+           CATEGORIES
+        ========================================================= */
+
+        .category-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 24px 18px;
+            text-align: center;
+            transition: .3s ease;
+            cursor: pointer;
+            height: 100%;
+        }
+
+        .category-card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(8,127,91,.25);
+            box-shadow: var(--shadow-md);
+        }
+
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 22px;
+            margin: 0 auto 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-soft);
+            color: var(--primary);
+            font-size: 27px;
+            transition: .3s;
+        }
+
+        .category-card:hover .category-icon {
+            background: var(--primary);
+            color: white;
+            transform: rotate(-4deg) scale(1.05);
+        }
+
+        .category-card h5 {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .category-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        /* =========================================================
+           PRODUCTS
+        ========================================================= */
+
+        .products-section {
+            background: #f0f6f3;
+        }
+
+        .filter-wrap {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .filter-wrap::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-btn {
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+            background: white;
+            color: var(--text);
+            padding: 9px 15px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            transition: .2s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 21px;
+            overflow: hidden;
+            height: 100%;
+            transition: .3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-7px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .product-image {
+            height: 220px;
+            background: #f5f8f6;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.07);
+        }
+
+        .discount-badge {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            background: var(--accent);
+            color: #503800;
+            font-size: 9px;
+            font-weight: 900;
+            padding: 6px 9px;
+            border-radius: 8px;
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 11px;
+            right: 11px;
+            width: 34px;
+            height: 34px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,.93);
+            color: #64716c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .2s;
+        }
+
+        .favorite-btn:hover,
+        .favorite-btn.active {
+            color: var(--danger);
+        }
+
+        .product-body {
+            padding: 17px;
+        }
+
+        .product-category {
+            color: var(--primary);
+            font-size: 9px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-name {
+            color: var(--dark);
+            font-family: "Manrope";
+            font-size: 14px;
+            font-weight: 800;
+            line-height: 1.4;
+            margin: 7px 0 5px;
+        }
+
+        .product-meta {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .product-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-top: 16px;
+            padding-top: 13px;
+            border-top: 1px solid #eef2ef;
+        }
+
+        .price {
+            color: var(--dark);
+            font-size: 15px;
+            font-weight: 900;
+        }
+
+        .old-price {
+            color: #a3aca8;
+            font-size: 10px;
+            text-decoration: line-through;
+            display: block;
+        }
+
+        .add-btn {
+            border: 0;
+            background: var(--primary-soft);
+            color: var(--primary);
+            border-radius: 10px;
+            padding: 9px 12px;
+            font-size: 11px;
+            font-weight: 800;
+            transition: .2s;
+        }
+
+        .add-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .qty-control {
+            display: flex;
+            align-items: center;
+            background: var(--primary);
+            border-radius: 10px;
+            overflow: hidden;
+            color: white;
+        }
+
+        .qty-control button {
+            border: 0;
+            background: transparent;
+            color: white;
+            width: 28px;
+            height: 31px;
+        }
+
+        .qty-control span {
+            font-size: 11px;
+            font-weight: 800;
+            min-width: 25px;
+            text-align: center;
+        }
+
+        /* =========================================================
+           ABOUT
+        ========================================================= */
+
+        .about-image-wrap {
+            position: relative;
+            padding-right: 35px;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 490px;
+            object-fit: cover;
+            border-radius: 30px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .experience-card {
+            position: absolute;
+            right: 0;
+            bottom: 35px;
+            background: white;
+            border-radius: 18px;
+            padding: 18px;
+            box-shadow: var(--shadow-lg);
+            width: 180px;
+        }
+
+        .experience-card strong {
+            display: block;
+            color: var(--primary);
+            font-size: 29px;
+            font-family: "Manrope";
+            font-weight: 800;
+        }
+
+        .experience-card span {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .check-list {
+            list-style: none;
+            padding: 0;
+            margin: 25px 0;
+        }
+
+        .check-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 13px;
+            color: var(--text);
+            font-size: 13px;
+        }
+
+        .check-list i {
+            color: var(--primary);
+            font-size: 17px;
+        }
+
+        /* =========================================================
+           OFFER BANNER
+        ========================================================= */
+
+        .offer-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+            min-height: 290px;
+            background:
+                linear-gradient(100deg, rgba(3,59,46,.97), rgba(8,127,91,.72)),
+                url("https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=1500&q=85");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        .offer-content {
+            padding: 50px;
+            color: white;
+            max-width: 680px;
+        }
+
+        .offer-content h2 {
+            font-size: clamp(27px,4vw,42px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .offer-content p {
+            color: rgba(255,255,255,.76);
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 22px;
+        }
+
+        /* =========================================================
+           WHY US
+        ========================================================= */
+
+        .benefit-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 21px;
+            padding: 27px;
+            height: 100%;
+            transition: .3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .benefit-number {
+            color: #d8e6e0;
+            font-family: "Manrope";
+            font-size: 35px;
+            font-weight: 800;
+        }
+
+        .benefit-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 15px;
+            background: var(--primary-soft);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin: 17px 0;
+        }
+
+        .benefit-card h5 {
+            color: var(--dark);
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .benefit-card p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* =========================================================
+           TESTIMONIALS
+        ========================================================= */
+
+        .testimonial-section {
+            background: var(--primary-deep);
+            color: white;
+        }
+
+        .testimonial-section .section-label {
+            color: var(--accent);
+        }
+
+        .testimonial-section .section-title {
+            color: white;
+        }
+
+        .testimonial-section .section-description {
+            color: rgba(255,255,255,.62);
+        }
+
+        .review-card {
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 23px;
+            padding: 25px;
+            height: 100%;
+            backdrop-filter: blur(8px);
+        }
+
+        .stars {
+            color: var(--accent);
+            font-size: 11px;
+            margin-bottom: 15px;
+        }
+
+        .review-text {
+            color: rgba(255,255,255,.78);
+            font-size: 12px;
+            line-height: 1.9;
+            margin-bottom: 22px;
+        }
+
+        .review-user {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .review-user img {
+            width: 43px;
+            height: 43px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,.15);
+        }
+
+        .review-user strong {
+            display: block;
+            font-size: 12px;
+            color: white;
+        }
+
+        .review-user span {
+            display: block;
+            color: rgba(255,255,255,.45);
+            font-size: 10px;
+        }
+
+        /* =========================================================
+           FAQ
+        ========================================================= */
+
+        .faq-item {
+            border: 1px solid var(--border) !important;
+            border-radius: 15px !important;
+            overflow: hidden;
+            margin-bottom: 10px;
+            background: white;
+        }
+
+        .faq-button {
+            font-size: 13px !important;
+            font-weight: 800 !important;
+            color: var(--dark) !important;
+            padding: 19px !important;
+            box-shadow: none !important;
+        }
+
+        .faq-button:not(.collapsed) {
+            color: var(--primary) !important;
+            background: var(--primary-soft) !important;
+        }
+
+        .faq-body {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        /* =========================================================
+           CONTACT
+        ========================================================= */
+
+        .contact-card {
+            background: var(--primary-deep);
+            border-radius: 30px;
+            padding: 45px;
+            color: white;
+            height: 100%;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 13px;
+            margin-bottom: 22px;
+        }
+
+        .contact-icon {
+            width: 43px;
+            height: 43px;
+            border-radius: 13px;
+            background: rgba(255,255,255,.08);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-info h6 {
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 3px;
+        }
+
+        .contact-info p {
+            color: rgba(255,255,255,.55);
+            font-size: 11px;
+            margin: 0;
+        }
+
+        .contact-form-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 45px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .form-control-custom {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 13px 15px;
+            font-size: 12px;
+            color: var(--dark);
+            background: #fbfdfc;
+        }
+
+        .form-control-custom:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(8,127,91,.08);
+        }
+
+        .form-label-custom {
+            color: var(--dark);
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+
+        /* =========================================================
+           NEWSLETTER
+        ========================================================= */
+
+        .newsletter {
+            background: #e8f5f0;
+            border: 1px solid #d4ebe1;
+            border-radius: 27px;
+            padding: 38px;
+        }
+
+        .newsletter h3 {
+            color: var(--dark);
+            font-weight: 800;
+        }
+
+        .newsletter p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .newsletter-input {
+            border: 0;
+            background: white;
+            border-radius: 13px;
+            padding: 14px 17px;
+            width: 100%;
+            outline: none;
+            font-size: 12px;
+        }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        .footer {
+            background: #061c15;
+            color: rgba(255,255,255,.55);
+            padding: 70px 0 25px;
+        }
+
+        .footer-brand {
+            color: white;
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            line-height: 1.9;
+            max-width: 330px;
+        }
+
+        .footer h6 {
+            color: white;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer li {
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: rgba(255,255,255,.55);
+            font-size: 11px;
+            transition: .2s;
+        }
+
+        .footer a:hover {
+            color: var(--accent);
+        }
+
+        .social-link {
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
+            background: rgba(255,255,255,.06);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 5px;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,.08);
+            margin-top: 50px;
+            padding-top: 20px;
+            font-size: 10px;
+        }
+
+        /* =========================================================
+           CART DRAWER
+        ========================================================= */
+
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(2,20,15,.6);
+            backdrop-filter: blur(4px);
+            z-index: 3000;
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+        }
+
+        .cart-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            right: 0;
+            top: 0;
+            height: 100vh;
+            width: min(450px, 100%);
+            background: white;
+            z-index: 3001;
+            transform: translateX(100%);
+            transition: .4s cubic-bezier(.2,.8,.2,1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -20px 0 60px rgba(0,0,0,.15);
+        }
+
+        .cart-drawer.show {
+            transform: translateX(0);
+        }
+
+        .cart-header {
+            background: var(--primary-deep);
+            color: white;
+            padding: 21px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h5 {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .cart-close {
+            width: 35px;
+            height: 35px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,.08);
+            color: white;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 12px;
+            padding: 13px 0;
+            border-bottom: 1px solid #edf2ef;
+        }
+
+        .cart-item img {
+            width: 58px;
+            height: 58px;
+            object-fit: cover;
+            border-radius: 13px;
+            background: #f5f8f6;
+        }
+
+        .cart-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .cart-item-info h6 {
+            color: var(--dark);
+            font-size: 11px;
+            font-weight: 800;
+            margin: 3px 0;
+        }
+
+        .cart-item-info p {
+            color: var(--muted);
+            font-size: 10px;
+            margin: 0;
+        }
+
+        .cart-qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 7px;
+        }
+
+        .cart-qty button {
+            width: 24px;
+            height: 24px;
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            background: white;
+        }
+
+        .cart-qty span {
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .cart-price {
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 900;
+            white-space: nowrap;
+        }
+
+        .empty-cart {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            color: var(--muted);
+        }
+
+        .empty-cart-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-soft);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 17px;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            background: #f8faf9;
+            border-top: 1px solid var(--border);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .summary-row.total {
+            color: var(--dark);
+            font-size: 15px;
+            font-weight: 900;
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+            margin-top: 12px;
+        }
+
+        .whatsapp-btn {
+            width: 100%;
+            border: 0;
+            background: #25d366;
+            color: white;
+            border-radius: 13px;
+            padding: 14px;
+            font-size: 12px;
+            font-weight: 800;
+            margin-top: 10px;
+            transition: .2s;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1db954;
+            transform: translateY(-2px);
+        }
+
+        /* =========================================================
+           AUTH MODAL
+        ========================================================= */
+
+        .auth-modal .modal-content {
+            border: 0;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .auth-side {
+            background: var(--primary-deep);
+            color: white;
+            padding: 35px;
+            min-height: 100%;
+        }
+
+        .auth-side h3 {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .auth-side p {
+            color: rgba(255,255,255,.62);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .auth-form {
+            padding: 35px;
+        }
+
+        .auth-tabs {
+            display: flex;
+            background: #f5f8f6;
+            border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 23px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            border: 0;
+            padding: 10px;
+            background: transparent;
+            border-radius: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .auth-tab.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* =========================================================
+           TOAST
+        ========================================================= */
+
+        #toastContainer {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .toast-custom {
+            background: var(--dark);
+            color: white;
+            min-width: 260px;
+            max-width: 360px;
+            padding: 13px 15px;
+            border-radius: 13px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            animation: toastIn .3s ease forwards;
+        }
+
+        .toast-custom.success i {
+            color: #4ade80;
+        }
+
+        .toast-custom.info i {
+            color: var(--accent);
+        }
+
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================================================
+           BACK TO TOP
+        ========================================================= */
+
+        #backTop {
+            position: fixed;
+            right: 20px;
+            bottom: 85px;
+            width: 43px;
+            height: 43px;
+            border: 0;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: .3s;
+            box-shadow: var(--shadow-md);
+        }
+
+        #backTop.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* =========================================================
+           FLOATING WHATSAPP
+        ========================================================= */
+
+        .floating-whatsapp {
+            position: fixed;
+            right: 20px;
+            bottom: 25px;
+            width: 51px;
+            height: 51px;
+            border-radius: 50%;
+            background: #25d366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            z-index: 1400;
+            box-shadow: 0 12px 30px rgba(37,211,102,.28);
+            transition: .25s;
+        }
+
+        .floating-whatsapp:hover {
+            color: white;
+            transform: translateY(-4px) scale(1.04);
+        }
+
+        .floating-whatsapp::before {
+            content: "";
+            position: absolute;
+            inset: -5px;
+            border: 1px solid rgba(37,211,102,.35);
+            border-radius: 50%;
+            animation: whatsappPulse 2s infinite;
+        }
+
+        @keyframes whatsappPulse {
+            0%,100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.35);
+                opacity: 0;
+            }
+        }
+
+        /* =========================================================
+           SCROLL REVEAL
+        ========================================================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 991px) {
+
+            .navbar {
+                min-height: 68px;
+            }
+
+            .navbar-collapse {
+                background: white;
+                padding: 12px 0 18px;
+                border-top: 1px solid var(--border);
+            }
+
+            .nav-link {
+                padding: 11px 4px !important;
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+
+            .search-box.desktop-search {
+                display: none;
+            }
+
+            .hero-content {
+                padding: 55px 38px;
+            }
+
+            .hero-card {
+                min-height: 560px;
+            }
+
+            .hero-title {
+                letter-spacing: -2px;
+            }
+
+            .about-image-wrap {
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: 767px) {
+
+            .top-bar {
+                font-size: 10px;
+            }
+
+            .top-bar .top-links {
+                display: none;
+            }
+
+            .hero-section {
+                padding-top: 18px;
+            }
+
+            .hero-card {
+                min-height: 570px;
+                border-radius: 24px;
+                background-position: 62% center;
+            }
+
+            .hero-content {
+                padding: 35px 23px;
+                align-self: flex-end;
+                background: linear-gradient(transparent, rgba(3,46,35,.5));
+            }
+
+            .hero-title {
+                font-size: 39px;
+                letter-spacing: -1.7px;
+            }
+
+            .hero-description {
+                font-size: 13px;
+                line-height: 1.7;
+            }
+
+            .hero-stats {
+                gap: 15px;
+                margin-top: 28px;
+            }
+
+            .hero-stat strong {
+                font-size: 16px;
+            }
+
+            .trust-grid {
+                border-radius: 18px;
+            }
+
+            .trust-item {
+                padding: 8px 3px;
+            }
+
+            .trust-icon {
+                width: 38px;
+                height: 38px;
+                font-size: 15px;
+            }
+
+            .trust-item h6 {
+                font-size: 11px;
+            }
+
+            .trust-item p {
+                display: none;
+            }
+
+            .section-padding {
+                padding: 60px 0;
+            }
+
+            .about-image {
+                height: 360px;
+            }
+
+            .experience-card {
+                right: 15px;
+                bottom: 20px;
+                width: 155px;
+            }
+
+            .offer-card {
+                border-radius: 23px;
+            }
+
+            .offer-content {
+                padding: 35px 25px;
+            }
+
+            .contact-card,
+            .contact-form-card {
+                padding: 27px;
+                border-radius: 23px;
+            }
+
+            .newsletter {
+                padding: 27px 20px;
+                border-radius: 22px;
+            }
+
+            .footer {
+                padding-top: 55px;
+            }
+
+            .floating-whatsapp {
+                right: 15px;
+                bottom: 17px;
+            }
+
+            #backTop {
+                right: 15px;
+                bottom: 80px;
+            }
+
+            .product-image {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 575px) {
+
+            .brand-name {
+                font-size: 18px;
+            }
+
+            .brand-icon {
+                width: 41px;
+                height: 41px;
+                border-radius: 13px;
+            }
+
+            .nav-actions .nav-login-text {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 35px;
+            }
+
+            .hero-stats {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .hero-stat span {
+                font-size: 9px;
+            }
+
+            .product-image {
+                height: 155px;
+            }
+
+            .product-body {
+                padding: 13px;
+            }
+
+            .product-name {
+                font-size: 12px;
+            }
+
+            .price {
+                font-size: 13px;
+            }
+
+            .add-btn {
+                padding: 8px 9px;
+                font-size: 10px;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+        }
+
+        /* =========================================================
+           IMAGE FALLBACK
+        ========================================================= */
+
+        img.image-error {
+            object-fit: contain !important;
+            padding: 30px;
+            background: #eef7f3 !important;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     PAGE LOADER
+========================================================= -->
+
+<div id="pageLoader">
+    <div class="loader-box">
+        <div class="loader-logo">
+            <i class="fa-solid fa-store"></i>
+        </div>
+        <h3>NANA</h3>
+        <div class="loader-line">
+            <span></span>
+        </div>
+    </div>
+</div>
+
+
+<!-- =========================================================
+     TOP BAR
+========================================================= -->
+
+<div class="top-bar">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            <i class="fa-solid fa-truck-fast me-1"></i>
+            Free delivery on orders above <strong>Rs. 2,000</strong>
+        </div>
+
+        <div class="top-links">
+            <a href="#contact">Help Center</a>
+            <a href="#faq">FAQ</a>
+            <a href="tel:+923001234567">
+                <i class="fa-solid fa-phone me-1"></i>
+                +92 300 1234567
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header class="main-navbar sticky-top" id="mainNavbar">
+
+    <div class="container">
+
+        <nav class="navbar navbar-expand-lg">
+
+            <a href="#home" class="navbar-brand brand-wrap">
+
+                <div class="brand-icon">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                </div>
+
+                <div>
+                    <div class="brand-name">NANA</div>
+                    <span class="brand-subtitle">GENERAL STORE</span>
+                </div>
+
+            </a>
+
+
+            <button
+                class="navbar-toggler border-0 shadow-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainMenu">
+
+                <i class="fa-solid fa-bars-staggered"></i>
+
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="mainMenu">
+
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#categories">Categories</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Products</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reviews">Reviews</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+
+                </ul>
+
+
+                <div class="nav-actions">
+
+                    <button
+                        class="nav-icon-btn"
+                        onclick="toggleSearch()"
+                        title="Search">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                    </button>
+
+
+                    <button
+                        class="nav-icon-btn"
+                        onclick="openAuth('login')"
+                        title="Account">
+
+                        <i class="fa-regular fa-user"></i>
+
+                    </button>
+
+
+                    <button
+                        class="nav-icon-btn"
+                        onclick="openCart()"
+                        title="Cart">
+
+                        <i class="fa-solid fa-bag-shopping"></i>
+
+                        <span class="cart-count" id="cartCount">0</span>
+
+                    </button>
+
+
+                    <a
+                        href="#products"
+                        class="btn-primary-custom d-none d-lg-inline-block">
+
+                        Shop Now
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     SEARCH PANEL
+========================================================= -->
+
+<div
+    id="searchPanel"
+    class="position-fixed top-0 start-0 w-100 bg-white shadow-lg"
+    style="
+        z-index:2000;
+        transform:translateY(-100%);
+        transition:.35s;
+    ">
+
+    <div class="container py-4">
+
+        <div class="d-flex align-items-center gap-3">
+
+            <div class="search-box flex-grow-1">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="globalSearch"
+                    placeholder="Search rice, milk, tea, snacks..."
+                    oninput="globalProductSearch()">
+
+            </div>
+
+            <button
+                onclick="toggleSearch()"
+                class="btn btn-light rounded-circle"
+                style="width:45px;height:45px;">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<main id="home">
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero-section">
+
+    <div class="container">
+
+        <div class="hero-card">
+
+            <div class="hero-pattern"></div>
+
+            <div class="hero-content reveal">
+
+                <div class="hero-badge">
+
+                    <span></span>
+
+                    Fresh groceries. Better prices.
+
+                </div>
+
+
+                <h1 class="hero-title">
+
+                    Your Everyday
+                    <br>
+
+                    <span class="highlight">Shopping,</span>
+                    Simplified.
+
+                </h1>
+
+
+                <p class="hero-description">
+
+                    Fresh groceries, household essentials, beverages and everyday
+                    products delivered to your doorstep with trusted quality
+                    and honest prices.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="#products"
+                        class="hero-btn-primary">
+
+                        Shop Fresh Products
+                        <i class="fa-solid fa-arrow-right ms-2"></i>
+
+                    </a>
+
+
+                    <a
+                        href="#categories"
+                        class="hero-btn-secondary">
+
+                        Explore Categories
+
+                    </a>
+
+                </div>
+
+
+                <div class="hero-stats">
+
+                    <div class="hero-stat">
+                        <strong>5K+</strong>
+                        <span>Happy Customers</span>
+                    </div>
+
+                    <div class="hero-stat">
+                        <strong>500+</strong>
+                        <span>Daily Products</span>
+                    </div>
+
+                    <div class="hero-stat">
+                        <strong>30 Min</strong>
+                        <span>Fast Delivery</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     TRUST STRIP
+========================================================= -->
+
+<section class="trust-strip">
+
+    <div class="container">
+
+        <div class="trust-grid">
+
+            <div class="row g-3">
+
+                <div class="col-6 col-lg-3">
+
+                    <div class="trust-item">
+
+                        <div class="trust-icon">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+
+                        <div>
+                            <h6>Fast Delivery</h6>
+                            <p>Quick doorstep delivery</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-lg-3">
+
+                    <div class="trust-item">
+
+                        <div class="trust-icon">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+
+                        <div>
+                            <h6>Trusted Quality</h6>
+                            <p>Carefully selected products</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-lg-3">
+
+                    <div class="trust-item">
+
+                        <div class="trust-icon">
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                        </div>
+
+                        <div>
+                            <h6>Cash on Delivery</h6>
+                            <p>Pay when you receive</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-lg-3">
+
+                    <div class="trust-item">
+
+                        <div class="trust-icon">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+
+                        <div>
+                            <h6>WhatsApp Orders</h6>
+                            <p>Easy direct ordering</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CATEGORIES
+========================================================= -->
+
+<section
+    id="categories"
+    class="section-padding bg-white">
+
+    <div class="container">
+
+        <div class="row align-items-end mb-5">
+
+            <div class="col-lg-7 reveal">
+
+                <div class="section-label">
+                    Shop by category
+                </div>
+
+                <h2 class="section-title">
+                    Everything you need,
+                    <br>
+                    all in one place.
+                </h2>
+
+                <p class="section-description">
+                    From your morning chai to household cleaning essentials,
+                    discover carefully selected everyday products at NANA.
+                </p>
+
+            </div>
+
+            <div class="col-lg-5 text-lg-end mt-3 mt-lg-0">
+
+                <a
+                    href="#products"
+                    class="btn-primary-custom">
+
+                    View All Products
+                    <i class="fa-solid fa-arrow-right ms-2"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="row g-3 g-md-4">
+
+            <div class="col-6 col-md-4 col-lg-2 reveal">
+
+                <div
+                    class="category-card"
+                    onclick="filterCategory('Grocery')">
+
+                    <div class="category-icon">
+                        <i class="fa-solid fa-wheat-awn"></i>
+                    </div>
+
+                    <h5>Grocery</h5>
+                    <p>Rice, flour & pulses</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-md-4 col-lg-2 reveal">
+
+                <div
+                    class="category-card"
+                    onclick="filterCategory('Beverages')">
+
+                    <div class="category-icon">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+
+                    <h5>Beverages</h5>
+                    <p>Tea, drinks & juices</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-md-4 col-lg-2 reveal">
+
+                <div
+                    class="category-card"
+                    onclick="filterCategory('Snacks')">
+
+                    <div class="category-icon">
+                        <i class="fa-solid fa-cookie-bite"></i>
+                    </div>
+
+                    <h5>Snacks</h5>
+                    <p>Biscuits & chips</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-md-4 col-lg-2 reveal">
+
+                <div
+                    class="category-card"
+                    onclick="filterCategory('Household')">
+
+                    <div class="category-icon">
+                        <i class="fa-solid fa-spray-can-sparkles"></i>
+                    </div>
+
+                    <h5>Household</h5>
+                    <p>Cleaning essentials</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-md-4 col-lg-2 reveal">
+
+                <div
+                    class="category-card"
+                    onclick="filterCategory('Personal Care')">
+
+                    <div class="category-icon">
+                        <i class="fa-solid fa-pump-soap"></i>
+                    </div>
+
+                    <h5>Personal Care</h5>
+                    <p>Daily care products</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-md-4 col-lg-2 reveal">
+
+                <div
+                    class="category-card"
+                    onclick="filterCategory('All')">
+
+                    <div class="category-icon">
+                        <i class="fa-solid fa-border-all"></i>
+                    </div>
+
+                    <h5>All Items</h5>
+                    <p>Explore everything</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PRODUCTS
+========================================================= -->
+
+<section
+    id="products"
+    class="section-padding products-section">
+
+    <div class="container">
+
+        <div class="row align-items-end mb-4">
+
+            <div class="col-lg-7">
+
+                <div class="section-label">
+                    Our collection
+                </div>
+
+                <h2 class="section-title">
+                    Fresh picks for
+                    <br>
+                    everyday life.
+                </h2>
+
+                <p class="section-description">
+                    Browse our popular products and add your favorites
+                    directly to your shopping bag.
+                </p>
+
+            </div>
+
+            <div class="col-lg-5 mt-4 mt-lg-0">
+
+                <div class="filter-wrap justify-content-lg-end">
+
+                    <button
+                        class="filter-btn active"
+                        onclick="filterCategory('All', this)">
+
+                        All
+
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        onclick="filterCategory('Grocery', this)">
+
+                        Grocery
+
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        onclick="filterCategory('Beverages', this)">
+
+                        Beverages
+
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        onclick="filterCategory('Snacks', this)">
+
+                        Snacks
+
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        onclick="filterCategory('Household', this)">
+
+                        Household
+
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        onclick="filterCategory('Personal Care', this)">
+
+                        Personal Care
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="productGrid"
+            class="row g-3 g-lg-4">
+
+        </div>
+
+
+        <div
+            id="noProducts"
+            class="text-center py-5 d-none">
+
+            <div class="empty-cart-icon mx-auto">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <h4 class="fw-bold text-dark">
+                No products found
+            </h4>
+
+            <p class="text-muted small">
+                Try another search or category.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section
+    id="about"
+    class="section-padding bg-white">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6 reveal">
+
+                <div class="about-image-wrap">
+
+                    <img
+                        class="about-image"
+                        src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=1000&q=85"
+                        alt="NANA General Store grocery products"
+                        loading="lazy">
+
+                    <div class="experience-card">
+
+                        <strong>10+</strong>
+
+                        <span>
+                            Years of trusted
+                            neighborhood service
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-6 reveal">
+
+                <div class="section-label">
+                    About NANA
+                </div>
+
+                <h2 class="section-title">
+                    Your neighborhood store,
+                    now just a click away.
+                </h2>
+
+                <p class="section-description">
+
+                    NANA started with a simple idea:
+                    make everyday shopping easier, faster and more reliable.
+                    We bring essential grocery and household products
+                    closer to your doorstep.
+
+                </p>
+
+
+                <ul class="check-list">
+
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>
+                            Carefully selected everyday products.
+                        </span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>
+                            Competitive prices for your daily shopping.
+                        </span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>
+                            Easy WhatsApp ordering and doorstep delivery.
+                        </span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>
+                            Friendly customer support when you need us.
+                        </span>
+                    </li>
+
+                </ul>
+
+
+                <a
+                    href="#contact"
+                    class="btn-primary-custom">
+
+                    Talk to NANA
+                    <i class="fa-solid fa-arrow-right ms-2"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     OFFER
+========================================================= -->
+
+<section class="pb-5">
+
+    <div class="container">
+
+        <div class="offer-card reveal">
+
+            <div class="offer-content">
+
+                <div class="section-label text-warning">
+                    Limited time offer
+                </div>
+
+                <h2>
+                    Save more on
+                    your everyday basket.
+                </h2>
+
+                <p>
+                    Stock up on your household favorites and enjoy
+                    special prices on selected products this week.
+                </p>
+
+                <a
+                    href="#products"
+                    class="hero-btn-primary">
+
+                    Explore Deals
+                    <i class="fa-solid fa-arrow-right ms-2"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     WHY NANA
+========================================================= -->
+
+<section
+    class="section-padding">
+
+    <div class="container">
+
+        <div class="text-center mx-auto mb-5" style="max-width:650px;">
+
+            <div class="section-label">
+                Why choose NANA
+            </div>
+
+            <h2 class="section-title">
+                More than a store.
+                A better shopping experience.
+            </h2>
+
+            <p class="section-description mx-auto">
+                We focus on the details that make everyday grocery
+                shopping simpler and more convenient.
+            </p>
+
+        </div>
+
+
+        <div class="row g-3 g-lg-4">
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="benefit-card">
+
+                    <div class="benefit-number">
+                        01
+                    </div>
+
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+
+                    <h5>Quality First</h5>
+
+                    <p>
+                        Products are selected with everyday quality,
+                        freshness and reliability in mind.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="benefit-card">
+
+                    <div class="benefit-number">
+                        02
+                    </div>
+
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-tags"></i>
+                    </div>
+
+                    <h5>Fair Prices</h5>
+
+                    <p>
+                        Smart pricing helps you get more value
+                        from your everyday shopping basket.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="benefit-card">
+
+                    <div class="benefit-number">
+                        03
+                    </div>
+
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+
+                    <h5>Fast Delivery</h5>
+
+                    <p>
+                        Get your selected products delivered
+                        quickly and conveniently.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="benefit-card">
+
+                    <div class="benefit-number">
+                        04
+                    </div>
+
+                    <div class="benefit-icon">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+
+                    <h5>Easy Ordering</h5>
+
+                    <p>
+                        Prefer WhatsApp? Send your basket directly
+                        to our store team with one click.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="benefit-card">
+
+                    <div class="benefit-number">
+                        05
+                    </div>
+
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+
+                    <h5>Friendly Support</h5>
+
+                    <p>
+                        Need help with your order? Our team is
+                        ready to assist you.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="benefit-card">
+
+                    <div class="benefit-number">
+                        06
+                    </div>
+
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+
+                    <h5>Secure Experience</h5>
+
+                    <p>
+                        Your shopping experience is designed
+                        with privacy and simplicity in mind.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     REVIEWS
+========================================================= -->
+
+<section
+    id="reviews"
+    class="section-padding testimonial-section">
+
+    <div class="container">
+
+        <div class="row align-items-end mb-5">
+
+            <div class="col-lg-7">
+
+                <div class="section-label">
+                    Customer stories
+                </div>
+
+                <h2 class="section-title">
+                    Loved by everyday
+                    shoppers.
+                </h2>
+
+                <p class="section-description">
+                    A few words from customers who have made
+                    NANA part of their everyday routine.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="reviewsCarousel"
+            class="carousel slide"
+            data-bs-ride="carousel"
+            data-bs-interval="5000">
+
+            <div class="carousel-inner">
+
+
+                <div class="carousel-item active">
+
+                    <div class="row g-4">
+
+                        <div class="col-md-4">
+
+                            <div class="review-card">
+
+                                <div class="stars">
+                                    ★★★★★
+                                </div>
+
+                                <p class="review-text">
+                                    "The ordering process is really easy.
+                                    I added my groceries to the cart and
+                                    sent everything on WhatsApp."
+                                </p>
+
+                                <div class="review-user">
+
+                                    <img
+                                        src="https://randomuser.me/api/portraits/men/32.jpg"
+                                        alt="Customer">
+
+                                    <div>
+                                        <strong>Ahmed Khan</strong>
+                                        <span>Karachi</span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="review-card">
+
+                                <div class="stars">
+                                    ★★★★★
+                                </div>
+
+                                <p class="review-text">
+                                    "I like the clean website and the
+                                    delivery option. Finding products
+                                    is much easier now."
+                                </p>
+
+                                <div class="review-user">
+
+                                    <img
+                                        src="https://randomuser.me/api/portraits/women/44.jpg"
+                                        alt="Customer">
+
+                                    <div>
+                                        <strong>Fatima Ali</strong>
+                                        <span>Lahore</span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="review-card">
+
+                                <div class="stars">
+                                    ★★★★★
+                                </div>
+
+                                <p class="review-text">
+                                    "Good experience for regular household
+                                    shopping. The WhatsApp checkout is
+                                    especially convenient."
+                                </p>
+
+                                <div class="review-user">
+
+                                    <img
+                                        src="https://randomuser.me/api/portraits/men/46.jpg"
+                                        alt="Customer">
+
+                                    <div>
+                                        <strong>Usman Raza</strong>
+                                        <span>Islamabad</span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="carousel-item">
+
+                    <div class="row g-4">
+
+                        <div class="col-md-4">
+
+                            <div class="review-card">
+
+                                <div class="stars">
+                                    ★★★★★
+                                </div>
+
+                                <p class="review-text">
+                                    "Very simple shopping experience.
+                                    I can quickly find products without
+                                    going through complicated menus."
+                                </p>
+
+                                <div class="review-user">
+
+                                    <img
+                                        src="https://randomuser.me/api/portraits/women/68.jpg"
+                                        alt="Customer">
+
+                                    <div>
+                                        <strong>Sana Ahmed</strong>
+                                        <span>Karachi</span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="review-card">
+
+                                <div class="stars">
+                                    ★★★★★
+                                </div>
+
+                                <p class="review-text">
+                                    "The product cards are clear and the
+                                    cart makes it easy to check my total
+                                    before ordering."
+                                </p>
+
+                                <div class="review-user">
+
+                                    <img
+                                        src="https://randomuser.me/api/portraits/men/61.jpg"
+                                        alt="Customer">
+
+                                    <div>
+                                        <strong>Bilal Ahmed</strong>
+                                        <span>Karachi</span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="review-card">
+
+                                <div class="stars">
+                                    ★★★★★
+                                </div>
+
+                                <p class="review-text">
+                                    "The design feels modern and the
+                                    WhatsApp order button makes the
+                                    final step very straightforward."
+                                </p>
+
+                                <div class="review-user">
+
+                                    <img
+                                        src="https://randomuser.me/api/portraits/women/33.jpg"
+                                        alt="Customer">
+
+                                    <div>
+                                        <strong>Maryam Noor</strong>
+                                        <span>Lahore</span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#reviewsCarousel"
+                data-bs-slide="prev">
+
+                <span class="carousel-control-prev-icon"></span>
+
+            </button>
+
+
+            <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#reviewsCarousel"
+                data-bs-slide="next">
+
+                <span class="carousel-control-next-icon"></span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FAQ
+========================================================= -->
+
+<section
+    id="faq"
+    class="section-padding bg-white">
+
+    <div class="container">
+
+        <div class="row g-5">
+
+            <div class="col-lg-5">
+
+                <div class="section-label">
+                    Need help?
+                </div>
+
+                <h2 class="section-title">
+                    Frequently asked
+                    questions.
+                </h2>
+
+                <p class="section-description">
+                    Everything you need to know about ordering,
+                    delivery and payments.
+                </p>
+
+                <a
+                    href="#contact"
+                    class="btn-primary-custom mt-3">
+
+                    Ask a Question
+                    <i class="fa-solid fa-arrow-right ms-2"></i>
+
+                </a>
+
+            </div>
+
+
+            <div class="col-lg-7">
+
+                <div class="accordion" id="faqAccordion">
+
+
+                    <div class="accordion-item faq-item">
+
+                        <h2 class="accordion-header">
+
+                            <button
+                                class="accordion-button faq-button"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#faqOne">
+
+                                Do you offer home delivery?
+
+                            </button>
+
+                        </h2>
+
+                        <div
+                            id="faqOne"
+                            class="accordion-collapse collapse show"
+                            data-bs-parent="#faqAccordion">
+
+                            <div class="accordion-body faq-body">
+
+                                Yes. Delivery availability depends on
+                                your area. Orders above Rs. 2,000 can
+                                qualify for free delivery.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="accordion-item faq-item">
+
+                        <h2 class="accordion-header">
+
+                            <button
+                                class="accordion-button collapsed faq-button"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#faqTwo">
+
+                                Can I order through WhatsApp?
+
+                            </button>
+
+                        </h2>
+
+                        <div
+                            id="faqTwo"
+                            class="accordion-collapse collapse"
+                            data-bs-parent="#faqAccordion">
+
+                            <div class="accordion-body faq-body">
+
+                                Yes. Add your products to the cart and
+                                click Checkout via WhatsApp. Your order
+                                summary will be prepared automatically.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="accordion-item faq-item">
+
+                        <h2 class="accordion-header">
+
+                            <button
+                                class="accordion-button collapsed faq-button"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#faqThree">
+
+                                What payment methods are available?
+
+                            </button>
+
+                        </h2>
+
+                        <div
+                            id="faqThree"
+                            class="accordion-collapse collapse"
+                            data-bs-parent="#faqAccordion">
+
+                            <div class="accordion-body faq-body">
+
+                                Cash on Delivery and selected mobile
+                                wallet options can be available depending
+                                on your delivery location.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="accordion-item faq-item">
+
+                        <h2 class="accordion-header">
+
+                            <button
+                                class="accordion-button collapsed faq-button"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#faqFour">
+
+                                Can I change my order?
+
+                            </button>
+
+                        </h2>
+
+                        <div
+                            id="faqFour"
+                            class="accordion-collapse collapse"
+                            data-bs-parent="#faqAccordion">
+
+                            <div class="accordion-body faq-body">
+
+                                Contact the store team as soon as possible
+                                after placing the order so changes can
+                                be checked before dispatch.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="accordion-item faq-item">
+
+                        <h2 class="accordion-header">
+
+                            <button
+                                class="accordion-button collapsed faq-button"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#faqFive">
+
+                                Do I need an account to shop?
+
+                            </button>
+
+                        </h2>
+
+                        <div
+                            id="faqFive"
+                            class="accordion-collapse collapse"
+                            data-bs-parent="#faqAccordion">
+
+                            <div class="accordion-body faq-body">
+
+                                You can browse products without an account.
+                                Creating an account can make future shopping
+                                easier.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="accordion-item faq-item">
+
+                        <h2 class="accordion-header">
+
+                            <button
+                                class="accordion-button collapsed faq-button"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#faqSix">
+
+                                How can I contact NANA?
+
+                            </button>
+
+                        </h2>
+
+                        <div
+                            id="faqSix"
+                            class="accordion-collapse collapse"
+                            data-bs-parent="#faqAccordion">
+
+                            <div class="accordion-body faq-body">
+
+                                You can call, WhatsApp or use the contact
+                                form below.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section
+    id="contact"
+    class="section-padding">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-lg-5">
+
+                <div class="contact-card reveal">
+
+                    <div class="section-label text-warning">
+                        Get in touch
+                    </div>
+
+                    <h2 class="section-title text-white">
+                        Let's make
+                        shopping easier.
+                    </h2>
+
+                    <p
+                        class="mb-4"
+                        style="
+                            color:rgba(255,255,255,.55);
+                            font-size:12px;
+                            line-height:1.8;
+                        ">
+
+                        Have a question about an order, delivery
+                        or product? Our team is ready to help.
+
+                    </p>
+
+
+                    <div class="contact-info">
+
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+
+                        <div>
+                            <h6>Store Location</h6>
+                            <p>
+                                Main Commercial Market,
+                                Karachi, Pakistan
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="contact-info">
+
+                        <div class="contact-icon">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+
+                        <div>
+                            <h6>WhatsApp</h6>
+                            <p>
+                                +92 300 1234567
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="contact-info">
+
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+
+                        <div>
+                            <h6>Email</h6>
+                            <p>
+                                support@nanastore.pk
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="contact-info">
+
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+
+                        <div>
+                            <h6>Opening Hours</h6>
+                            <p>
+                                Monday - Sunday
+                                <br>
+                                9:00 AM - 11:00 PM
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="mt-4">
+
+                        <a
+                            href="https://facebook.com"
+                            target="_blank"
+                            class="social-link">
+
+                            <i class="fa-brands fa-facebook-f"></i>
+
+                        </a>
+
+                        <a
+                            href="https://instagram.com"
+                            target="_blank"
+                            class="social-link">
+
+                            <i class="fa-brands fa-instagram"></i>
+
+                        </a>
+
+                        <a
+                            href="https://wa.me/923001234567"
+                            target="_blank"
+                            class="social-link">
+
+                            <i class="fa-brands fa-whatsapp"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-7">
+
+                <div class="contact-form-card reveal">
+
+                    <div class="section-label">
+                        Send a message
+                    </div>
+
+                    <h3
+                        class="mb-2"
+                        style="
+                            color:var(--dark);
+                            font-weight:800;
+                        ">
+
+                        How can we help?
+
+                    </h3>
+
+                    <p
+                        class="mb-4"
+                        style="
+                            color:var(--muted);
+                            font-size:12px;
+                        ">
+
+                        Fill out the form and our team will
+                        get back to you.
+
+                    </p>
+
+
+                    <form id="contactForm">
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+
+                                <label class="form-label-custom">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control form-control-custom"
+                                    placeholder="Your name"
+                                    required>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label-custom">
+                                    Phone
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    class="form-control form-control-custom"
+                                    placeholder="03XX XXXXXXX"
+                                    required>
+
+                            </div>
+
+
+                            <div class="col-12">
+
+                                <label class="form-label-custom">
+                                    Email
+                                </label>
+
+                                <input
+                                    type="email"
+                                    class="form-control form-control-custom"
+                                    placeholder="you@example.com"
+                                    required>
+
+                            </div>
+
+
+                            <div class="col-12">
+
+                                <label class="form-label-custom">
+                                    Subject
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control form-control-custom"
+                                    placeholder="How can we help?"
+                                    required>
+
+                            </div>
+
+
+                            <div class="col-12">
+
+                                <label class="form-label-custom">
+                                    Message
+                                </label>
+
+                                <textarea
+                                    class="form-control form-control-custom"
+                                    rows="5"
+                                    placeholder="Write your message..."
+                                    required></textarea>
+
+                            </div>
+
+
+                            <div class="col-12">
+
+                                <button
+                                    type="submit"
+                                    class="btn-primary-custom w-100">
+
+                                    Send Message
+                                    <i class="fa-solid fa-paper-plane ms-2"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     NEWSLETTER
+========================================================= -->
+
+<section class="pb-5">
+
+    <div class="container">
+
+        <div class="newsletter reveal">
+
+            <div class="row align-items-center g-4">
+
+                <div class="col-lg-6">
+
+                    <div class="section-label">
+                        Stay updated
+                    </div>
+
+                    <h3>
+                        Get offers straight
+                        to your inbox.
+                    </h3>
+
+                    <p class="mb-0">
+                        Subscribe for new products,
+                        special offers and shopping updates.
+                    </p>
+
+                </div>
+
+
+                <div class="col-lg-6">
+
+                    <form
+                        id="newsletterForm"
+                        class="d-flex gap-2">
+
+                        <input
+                            type="email"
+                            class="newsletter-input"
+                            placeholder="Your email address"
+                            required>
+
+                        <button
+                            type="submit"
+                            class="btn-primary-custom flex-shrink-0">
+
+                            Subscribe
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="row g-5">
+
+            <div class="col-lg-4">
+
+                <div class="brand-wrap mb-3">
+
+                    <div class="brand-icon">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </div>
+
+                    <div>
+                        <div class="footer-brand">
+                            NANA
+                        </div>
+
+                        <span class="brand-subtitle">
+                            GENERAL STORE
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <p class="footer-text">
+
+                    Your trusted everyday grocery destination.
+                    Fresh essentials, convenient shopping and
+                    friendly service, all in one place.
+
+                </p>
+
+
+                <div class="mt-3">
+
+                    <a
+                        href="https://facebook.com"
+                        class="social-link"
+                        target="_blank">
+
+                        <i class="fa-brands fa-facebook-f"></i>
+
+                    </a>
+
+                    <a
+                        href="https://instagram.com"
+                        class="social-link"
+                        target="_blank">
+
+                        <i class="fa-brands fa-instagram"></i>
+
+                    </a>
+
+                    <a
+                        href="https://wa.me/923001234567"
+                        class="social-link"
+                        target="_blank">
+
+                        <i class="fa-brands fa-whatsapp"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-2">
+
+                <h6>Quick Links</h6>
+
+                <ul>
+
+                    <li>
+                        <a href="#home">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#categories">Categories</a>
+                    </li>
+
+                    <li>
+                        <a href="#products">Products</a>
+                    </li>
+
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="col-6 col-lg-2">
+
+                <h6>Categories</h6>
+
+                <ul>
+
+                    <li>
+                        <a href="#products">Grocery</a>
+                    </li>
+
+                    <li>
+                        <a href="#products">Beverages</a>
+                    </li>
+
+                    <li>
+                        <a href="#products">Snacks</a>
+                    </li>
+
+                    <li>
+                        <a href="#products">Household</a>
+                    </li>
+
+                    <li>
+                        <a href="#products">Personal Care</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="col-lg-4">
+
+                <h6>Contact</h6>
+
+                <ul>
+
+                    <li>
+                        <a href="tel:+923001234567">
+                            <i class="fa-solid fa-phone me-2"></i>
+                            +92 300 1234567
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="mailto:support@nanastore.pk">
+                            <i class="fa-solid fa-envelope me-2"></i>
+                            support@nanastore.pk
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#contact">
+                            <i class="fa-solid fa-location-dot me-2"></i>
+                            Karachi, Pakistan
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright text-center">
+
+            <div class="row">
+
+                <div class="col-md-6 text-md-start">
+
+                    © 2026 NANA General Store.
+                    All Rights Reserved.
+
+                </div>
+
+                <div class="col-md-6 text-md-end mt-2 mt-md-0">
+
+                    Built for modern everyday shopping.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     CART OVERLAY
+========================================================= -->
+
+<div
+    id="cartOverlay"
+    class="cart-overlay"
+    onclick="closeCart()">
+</div>
+
+
+<!-- =========================================================
+     CART DRAWER
+========================================================= -->
+
+<aside
+    id="cartDrawer"
+    class="cart-drawer">
+
+    <div class="cart-header">
+
+        <h5>
+            <i class="fa-solid fa-bag-shopping me-2 text-warning"></i>
+            Your Shopping Bag
+        </h5>
+
+        <button
+            class="cart-close"
+            onclick="closeCart()">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+
+    <div
+        id="cartItems"
+        class="cart-items">
+
+    </div>
+
+
+    <div
+        id="emptyCart"
+        class="empty-cart">
+
+        <div class="empty-cart-icon">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+        </div>
+
+        <h5
+            class="fw-bold text-dark">
+
+            Your cart is empty
+
+        </h5>
+
+        <p
+            class="small px-4">
+
+            Add some everyday essentials
+            to get started.
+
+        </p>
+
+        <button
+            class="btn-primary-custom"
+            onclick="closeCart()">
+
+            Start Shopping
+
+        </button>
+
+    </div>
+
+
+    <div
+        id="cartFooter"
+        class="cart-footer d-none">
+
+        <div class="summary-row">
+
+            <span>Subtotal</span>
+
+            <strong id="subtotal">
+                Rs. 0
+            </strong>
+
+        </div>
+
+
+        <div class="summary-row">
+
+            <span>Delivery</span>
+
+            <strong
+                id="delivery">
+
+                Rs. 99
+
+            </strong>
+
+        </div>
+
+
+        <div class="summary-row total">
+
+            <span>Total</span>
+
+            <strong id="total">
+                Rs. 0
+            </strong>
+
+        </div>
+
+
+        <button
+            onclick="checkoutWhatsApp()"
+            class="whatsapp-btn">
+
+            <i class="fa-brands fa-whatsapp me-2"></i>
+            Checkout via WhatsApp
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================================
+     AUTH MODAL
+========================================================= -->
+
+<div
+    class="modal fade auth-modal"
+    id="authModal"
+    tabindex="-1">
+
+    <div
+        class="modal-dialog modal-dialog-centered modal-lg">
+
+        <div class="modal-content">
+
+            <div class="row g-0">
+
+
+                <div class="col-lg-5 d-none d-lg-block">
+
+                    <div class="auth-side">
+
+                        <div
+                            class="brand-icon mb-4">
+
+                            <i class="fa-solid fa-basket-shopping"></i>
+
+                        </div>
+
+                        <h3>
+                            Welcome to
+                            NANA.
+                        </h3>
+
+                        <p>
+                            Create your account to make
+                            everyday shopping faster and
+                            more convenient.
+                        </p>
+
+
+                        <div class="mt-5">
+
+                            <p>
+                                <i class="fa-solid fa-check text-warning me-2"></i>
+                                Faster checkout
+                            </p>
+
+                            <p>
+                                <i class="fa-solid fa-check text-warning me-2"></i>
+                                Easy order tracking
+                            </p>
+
+                            <p>
+                                <i class="fa-solid fa-check text-warning me-2"></i>
+                                Special offers
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-7">
+
+                    <div class="auth-form">
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+
+                            <div>
+
+                                <h4
+                                    class="fw-bold text-dark mb-1">
+
+                                    My Account
+
+                                </h4>
+
+                                <p
+                                    class="text-muted small mb-0">
+
+                                    Login or create an account.
+
+                                </p>
+
+                            </div>
+
+                            <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal">
+                            </button>
+
+                        </div>
+
+
+                        <div class="auth-tabs">
+
+                            <button
+                                id="loginTab"
+                                class="auth-tab active"
+                                onclick="switchAuth('login')">
+
+                                Login
+
+                            </button>
+
+                            <button
+                                id="signupTab"
+                                class="auth-tab"
+                                onclick="switchAuth('signup')">
+
+                                Create Account
+
+                            </button>
+
+                        </div>
+
+
+                        <!-- LOGIN -->
+
+                        <form
+                            id="loginForm"
+                            onsubmit="loginUser(event)">
+
+                            <div class="mb-3">
+
+                                <label class="form-label-custom">
+                                    Email or Phone
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="loginIdentity"
+                                    class="form-control form-control-custom"
+                                    placeholder="03XXXXXXXXX or email"
+                                    required>
+
+                            </div>
+
+
+                            <div class="mb-3">
+
+                                <label class="form-label-custom">
+                                    Password
+                                </label>
+
+                                <div class="position-relative">
+
+                                    <input
+                                        type="password"
+                                        id="loginPassword"
+                                        class="form-control form-control-custom"
+                                        placeholder="Your password"
+                                        required>
+
+                                    <button
+                                        type="button"
+                                        onclick="togglePassword('loginPassword', this)"
+                                        class="btn position-absolute top-50 end-0 translate-middle-y">
+
+                                        <i class="fa-regular fa-eye"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="d-flex justify-content-between align-items-center mb-4">
+
+                                <label
+                                    class="small text-muted">
+
+                                    <input
+                                        type="checkbox"
+                                        class="form-check-input me-1">
+
+                                    Remember me
+
+                                </label>
+
+                                <a
+                                    href="#"
+                                    onclick="forgotPassword(event)"
+                                    class="small text-success fw-bold">
+
+                                    Forgot password?
+
+                                </a>
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                class="btn-primary-custom w-100">
+
+                                Login
+                                <i class="fa-solid fa-arrow-right ms-2"></i>
+
+                            </button>
+
+                        </form>
+
+
+                        <!-- SIGNUP -->
+
+                        <form
+                            id="signupForm"
+                            class="d-none"
+                            onsubmit="signupUser(event)">
+
+                            <div class="mb-3">
+
+                                <label class="form-label-custom">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="signupName"
+                                    class="form-control form-control-custom"
+                                    placeholder="Your full name"
+                                    required>
+
+                            </div>
+
+
+                            <div class="mb-3">
+
+                                <label class="form-label-custom">
+                                    Mobile Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="signupPhone"
+                                    class="form-control form-control-custom"
+                                    placeholder="03001234567"
+                                    pattern="03[0-9]{9}"
+                                    required>
+
+                            </div>
+
+
+                            <div class="mb-3">
+
+                                <label class="form-label-custom">
+                                    Email
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="signupEmail"
+                                    class="form-control form-control-custom"
+                                    placeholder="you@example.com"
+                                    required>
+
+                            </div>
+
+
+                            <div class="mb-3">
+
+                                <label class="form-label-custom">
+                                    Password
+                                </label>
+
+                                <div class="position-relative">
+
+                                    <input
+                                        type="password"
+                                        id="signupPassword"
+                                        class="form-control form-control-custom"
+                                        placeholder="Minimum 6 characters"
+                                        minlength="6"
+                                        required>
+
+                                    <button
+                                        type="button"
+                                        onclick="togglePassword('signupPassword', this)"
+                                        class="btn position-absolute top-50 end-0 translate-middle-y">
+
+                                        <i class="fa-regular fa-eye"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="mb-4">
+
+                                <label class="small text-muted">
+
+                                    <input
+                                        type="checkbox"
+                                        required
+                                        class="form-check-input me-1">
+
+                                    I agree to the store terms.
+
+                                </label>
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                class="btn-primary-custom w-100">
+
+                                Create Account
+                                <i class="fa-solid fa-user-plus ms-2"></i>
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div id="toastContainer"></div>
+
+
+<!-- =========================================================
+     BACK TO TOP
+========================================================= -->
+
+<button
+    id="backTop"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+
+<!-- =========================================================
+     FLOATING WHATSAPP
+========================================================= -->
+
+<a
+    href="https://wa.me/923001234567"
+    target="_blank"
+    class="floating-whatsapp"
+    title="Chat on WhatsApp">
+
+    <i class="fa-brands fa-whatsapp"></i>
+
+</a>
+
+
+<!-- =========================================================
+     BOOTSTRAP JS
+========================================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+
+    /* =========================================================
+       PRODUCT DATABASE
+    ========================================================= */
+
+    const products = [
+
+        {
+            id: 1,
+            name: "Guard Superior Basmati Rice",
+            category: "Grocery",
+            price: 380,
+            oldPrice: 420,
+            weight: "1 kg",
+            image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 2,
+            name: "Cooking Oil Premium",
+            category: "Grocery",
+            price: 520,
+            oldPrice: 560,
+            weight: "1 Liter",
+            image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 3,
+            name: "Premium Black Tea",
+            category: "Beverages",
+            price: 340,
+            oldPrice: 390,
+            weight: "200 gm",
+            image: "https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 4,
+            name: "Refreshing Cola Drink",
+            category: "Beverages",
+            price: 180,
+            oldPrice: 210,
+            weight: "1.5 Liter",
+            image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 5,
+            name: "Chocolate Biscuits",
+            category: "Snacks",
+            price: 120,
+            oldPrice: 140,
+            weight: "Family Pack",
+            image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 6,
+            name: "Masala Potato Chips",
+            category: "Snacks",
+            price: 90,
+            oldPrice: 110,
+            weight: "Medium Pack",
+            image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 7,
+            name: "Laundry Washing Powder",
+            category: "Household",
+            price: 460,
+            oldPrice: 510,
+            weight: "500 gm",
+            image: "https://images.unsplash.com/photo-1585830810166-71c817d54483?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 8,
+            name: "Antibacterial Bath Soap",
+            category: "Personal Care",
+            price: 110,
+            oldPrice: 130,
+            weight: "115 gm",
+            image: "https://images.unsplash.com/photo-1607006482602-76ca97ac16b1?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 9,
+            name: "Full Cream Milk",
+            category: "Grocery",
+            price: 290,
+            oldPrice: 315,
+            weight: "1 Liter",
+            image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 10,
+            name: "Chilli Garlic Sauce",
+            category: "Grocery",
+            price: 210,
+            oldPrice: 245,
+            weight: "300 gm",
+            image: "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 11,
+            name: "Premium Wheat Flour",
+            category: "Grocery",
+            price: 190,
+            oldPrice: 220,
+            weight: "1 kg",
+            image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 12,
+            name: "Red Kidney Beans",
+            category: "Grocery",
+            price: 320,
+            oldPrice: 350,
+            weight: "500 gm",
+            image: "https://images.unsplash.com/photo-1551462147-ff29053bfc14?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 13,
+            name: "Orange Fruit Juice",
+            category: "Beverages",
+            price: 250,
+            oldPrice: 280,
+            weight: "1 Liter",
+            image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 14,
+            name: "Mineral Drinking Water",
+            category: "Beverages",
+            price: 100,
+            oldPrice: 120,
+            weight: "1.5 Liter",
+            image: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 15,
+            name: "Cream Filled Biscuits",
+            category: "Snacks",
+            price: 80,
+            oldPrice: 95,
+            weight: "Family Pack",
+            image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 16,
+            name: "Salted Snack Mix",
+            category: "Snacks",
+            price: 150,
+            oldPrice: 180,
+            weight: "250 gm",
+            image: "https://images.unsplash.com/photo-1621939514649-280e2aa7f7f8?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 17,
+            name: "Multi Surface Cleaner",
+            category: "Household",
+            price: 280,
+            oldPrice: 320,
+            weight: "500 ml",
+            image: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 18,
+            name: "Dish Washing Liquid",
+            category: "Household",
+            price: 230,
+            oldPrice: 260,
+            weight: "500 ml",
+            image: "https://images.unsplash.com/photo-1585832770485-e68a5dbfad52?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 19,
+            name: "Shampoo Daily Care",
+            category: "Personal Care",
+            price: 350,
+            oldPrice: 390,
+            weight: "400 ml",
+            image: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=600&q=85"
+        },
+
+        {
+            id: 20,
+            name: "Moisturizing Body Lotion",
+            category: "Personal Care",
+            price: 420,
+            oldPrice: 470,
+            weight: "400 ml",
+            image: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=600&q=85"
+        }
+
+    ];
+
+
+    /* =========================================================
+       GLOBAL STATE
+    ========================================================= */
+
+    let cart = [];
+
+    let activeCategory = "All";
+
+    let searchTerm = "";
+
+
+    /* =========================================================
+       INIT
+    ========================================================= */
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        renderProducts();
+
+        updateCart();
+
+        setupReveal();
+
+        setupNavbar();
+
+        setupImageFallbacks();
+
+        setTimeout(() => {
+
+            document.getElementById("pageLoader").style.opacity = "0";
+
+            setTimeout(() => {
+
+                document.getElementById("pageLoader").style.display = "none";
+
+            }, 500);
+
+        }, 700);
+
+    });
+
+
+    /* =========================================================
+       PRODUCT RENDER
+    ========================================================= */
+
+    function renderProducts() {
+
+        const grid = document.getElementById("productGrid");
+
+        const noProducts = document.getElementById("noProducts");
+
+
+        const filtered = products.filter(product => {
+
+            const categoryMatch =
+                activeCategory === "All" ||
+                product.category === activeCategory;
+
+            const searchMatch =
+                product.name
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase());
+
+            return categoryMatch && searchMatch;
+
+        });
+
+
+        if (filtered.length === 0) {
+
+            grid.innerHTML = "";
+
+            noProducts.classList.remove("d-none");
+
+            return;
+
+        }
+
+
+        noProducts.classList.add("d-none");
+
+
+        grid.innerHTML = filtered.map(product => {
+
+            const cartItem =
+                cart.find(item => item.id === product.id);
+
+            const qty =
+                cartItem ? cartItem.qty : 0;
+
+
+            return `
+
+                <div class="col-6 col-md-4 col-lg-3">
+
+                    <div class="product-card reveal visible">
+
+                        <div class="product-image">
+
+                            <img
+                                src="${product.image}"
+                                alt="${product.name}"
+                                loading="lazy">
+
+                            <span class="discount-badge">
+                                SAVE Rs. ${product.oldPrice - product.price}
+                            </span>
+
+
+                            <button
+                                class="favorite-btn"
+                                onclick="toggleFavorite(this)"
+                                aria-label="Add to wishlist">
+
+                                <i class="fa-regular fa-heart"></i>
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="product-body">
+
+                            <div class="product-category">
+                                ${product.category}
+                            </div>
+
+
+                            <div class="product-name">
+                                ${product.name}
+                            </div>
+
+
+                            <div class="product-meta">
+                                ${product.weight}
+                            </div>
+
+
+                            <div class="product-bottom">
+
+                                <div>
+
+                                    <div class="price">
+                                        Rs. ${product.price.toLocaleString()}
+                                    </div>
+
+                                    <span class="old-price">
+                                        Rs. ${product.oldPrice.toLocaleString()}
+                                    </span>
+
+                                </div>
+
+
+                                ${
+                                    qty === 0
+
+                                    ?
+
+                                    `
+                                    <button
+                                        class="add-btn"
+                                        onclick="addToCart(${product.id})">
+
+                                        <i class="fa-solid fa-plus me-1"></i>
+                                        Add
+
+                                    </button>
+                                    `
+
+                                    :
+
+                                    `
+                                    <div class="qty-control">
+
+                                        <button
+                                            onclick="changeQty(${product.id}, -1)">
+
+                                            -
+
+                                        </button>
+
+                                        <span>
+                                            ${qty}
+                                        </span>
+
+                                        <button
+                                            onclick="changeQty(${product.id}, 1)">
+
+                                            +
+
+                                        </button>
+
+                                    </div>
+                                    `
+                                }
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+
+        setupImageFallbacks();
+
+    }
+
+
+    /* =========================================================
+       CATEGORY FILTER
+    ========================================================= */
+
+    function filterCategory(category, clickedButton = null) {
+
+        activeCategory = category;
+
+        searchTerm = "";
+
+        document.getElementById("globalSearch").value = "";
+
+
+        document.querySelectorAll(".filter-btn")
+            .forEach(btn => btn.classList.remove("active"));
+
+
+        if (clickedButton) {
+
+            clickedButton.classList.add("active");
+
+        } else {
+
+            document.querySelectorAll(".filter-btn")
+                .forEach(btn => {
+
+                    if (
+                        btn.innerText.trim().toLowerCase()
+                        === category.toLowerCase()
+                    ) {
+
+                        btn.classList.add("active");
+
+                    }
+
+                });
+
+        }
+
+
+        renderProducts();
+
+
+        document.getElementById("products")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    }
+
+
+    /* =========================================================
+       SEARCH
+    ========================================================= */
+
+    function toggleSearch() {
+
+        const panel =
+            document.getElementById("searchPanel");
+
+
+        if (
+            panel.style.transform === "translateY(0%)"
+        ) {
+
+            panel.style.transform =
+                "translateY(-100%)";
+
+        } else {
+
+            panel.style.transform =
+                "translateY(0%)";
+
+            setTimeout(() => {
+
+                document
+                    .getElementById("globalSearch")
+                    .focus();
+
+            }, 250);
+
+        }
+
+    }
+
+
+    function globalProductSearch() {
+
+        searchTerm =
+            document
+                .getElementById("globalSearch")
+                .value;
+
+
+        activeCategory = "All";
+
+        document.querySelectorAll(".filter-btn")
+            .forEach(btn => btn.classList.remove("active"));
+
+        document
+            .querySelector(".filter-btn")
+            ?.classList.add("active");
+
+
+        renderProducts();
+
+    }
+
+
+    /* =========================================================
+       CART
+    ========================================================= */
+
+    function addToCart(id) {
+
+        const product =
+            products.find(p => p.id === id);
+
+
+        const existing =
+            cart.find(item => item.id === id);
+
+
+        if (existing) {
+
+            existing.qty++;
+
+        } else {
+
+            cart.push({
+                ...product,
+                qty: 1
+            });
+
+        }
+
+
+        updateCart();
+
+        renderProducts();
+
+
+        showToast(
+            `${product.name} added to your cart.`,
+            "success"
+        );
+
+    }
+
+
+    function changeQty(id, change) {
+
+        const item =
+            cart.find(product => product.id === id);
+
+
+        if (!item) return;
+
+
+        item.qty += change;
+
+
+        if (item.qty <= 0) {
+
+            cart =
+                cart.filter(product => product.id !== id);
+
+        }
+
+
+        updateCart();
+
+        renderProducts();
+
+    }
+
+
+    function updateCart() {
+
+        const count =
+            cart.reduce(
+                (sum, item) => sum + item.qty,
+                0
+            );
+
+
+        document.getElementById("cartCount")
+            .innerText = count;
+
+
+        const itemsContainer =
+            document.getElementById("cartItems");
+
+        const empty =
+            document.getElementById("emptyCart");
+
+        const footer =
+            document.getElementById("cartFooter");
+
+
+        if (cart.length === 0) {
+
+            itemsContainer.innerHTML = "";
+
+            empty.style.display = "flex";
+
+            footer.classList.add("d-none");
+
+            return;
+
+        }
+
+
+        empty.style.display = "none";
+
+        footer.classList.remove("d-none");
+
+
+        itemsContainer.innerHTML =
+            cart.map(item => `
+
+                <div class="cart-item">
+
+                    <img
+                        src="${item.image}"
+                        alt="${item.name}">
+
+                    <div class="cart-item-info">
+
+                        <h6>
+                            ${item.name}
+                        </h6>
+
+                        <p>
+                            ${item.weight}
+                        </p>
+
+
+                        <div class="cart-qty">
+
+                            <button
+                                onclick="changeQty(${item.id}, -1)">
+                                -
+                            </button>
+
+                            <span>
+                                ${item.qty}
+                            </span>
+
+                            <button
+                                onclick="changeQty(${item.id}, 1)">
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="cart-price">
+
+                        Rs.
+                        ${(item.price * item.qty).toLocaleString()}
+
+                    </div>
+
+                </div>
+
+            `).join("");
+
+
+        const subtotal =
+            cart.reduce(
+                (sum, item) =>
+                    sum + (item.price * item.qty),
+                0
+            );
+
+
+        const delivery =
+            subtotal >= 2000 ? 0 : 99;
+
+
+        const total =
+            subtotal + delivery;
+
+
+        document.getElementById("subtotal")
+            .innerText =
+            `Rs. ${subtotal.toLocaleString()}`;
+
+
+        document.getElementById("delivery")
+            .innerText =
+            delivery === 0
+            ? "FREE"
+            : `Rs. ${delivery}`;
+
+
+        document.getElementById("total")
+            .innerText =
+            `Rs. ${total.toLocaleString()}`;
+
+
+        setupImageFallbacks();
+
+    }
+
+
+    function openCart() {
+
+        document
+            .getElementById("cartOverlay")
+            .classList.add("show");
+
+
+        document
+            .getElementById("cartDrawer")
+            .classList.add("show");
+
+
+        document.body.style.overflow = "hidden";
+
+    }
+
+
+    function closeCart() {
+
+        document
+            .getElementById("cartOverlay")
+            .classList.remove("show");
+
+
+        document
+            .getElementById("cartDrawer")
+            .classList.remove("show");
+
+
+        document.body.style.overflow = "";
+
+    }
+
+
+    /* =========================================================
+       WHATSAPP CHECKOUT
+    ========================================================= */
+
+    function checkoutWhatsApp() {
+
+        if (cart.length === 0) {
+
+            showToast(
+                "Your cart is empty.",
+                "info"
+            );
+
+            return;
+
+        }
+
+
+        const subtotal =
+            cart.reduce(
+                (sum, item) =>
+                    sum + item.price * item.qty,
+                0
+            );
+
+
+        const delivery =
+            subtotal >= 2000 ? 0 : 99;
+
+
+        const total =
+            subtotal + delivery;
+
+
+        let message =
+            "Hello NANA General Store!%0A%0A";
+
+        message +=
+            "*New Order Request*%0A%0A";
+
+
+        cart.forEach((item, index) => {
+
+            message +=
+                `${index + 1}. ${item.name} - ${item.weight} x ${item.qty} = Rs. ${item.price * item.qty}%0A`;
+
+        });
+
+
+        message +=
+            `%0A*Subtotal:* Rs. ${subtotal}`;
+
+        message +=
+            `%0A*Delivery:* ${delivery === 0 ? "FREE" : "Rs. " + delivery}`;
+
+        message +=
+            `%0A*Total:* Rs. ${total}`;
+
+        message +=
+            `%0A%0APlease confirm my order.`;
+
+
+
+        const number =
+            "923001234567";
+
+
+        const url =
+            `https://wa.me/${number}?text=${message}`;
+
+
+        window.open(url, "_blank");
+
+    }
+
+
+    /* =========================================================
+       FAVORITE
+    ========================================================= */
+
+    function toggleFavorite(button) {
+
+        button.classList.toggle("active");
+
+        const icon =
+            button.querySelector("i");
+
+
+        if (
+            button.classList.contains("active")
+        ) {
+
+            icon.classList.remove("fa-regular");
+
+            icon.classList.add("fa-solid");
+
+            showToast(
+                "Added to wishlist.",
+                "success"
+            );
+
+        } else {
+
+            icon.classList.remove("fa-solid");
+
+            icon.classList.add("fa-regular");
+
+        }
+
+    }
+
+
+    /* =========================================================
+       AUTH
+    ========================================================= */
+
+    let authModal;
+
+
+    function openAuth(type = "login") {
+
+        authModal =
+            bootstrap.Modal.getOrCreateInstance(
+                document.getElementById("authModal")
+            );
+
+
+        authModal.show();
+
+        switchAuth(type);
+
+    }
+
+
+    function switchAuth(type) {
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+        const signupForm =
+            document.getElementById("signupForm");
+
+
+        const loginTab =
+            document.getElementById("loginTab");
+
+        const signupTab =
+            document.getElementById("signupTab");
+
+
+        if (type === "login") {
+
+            loginForm.classList.remove("d-none");
+
+            signupForm.classList.add("d-none");
+
+            loginTab.classList.add("active");
+
+            signupTab.classList.remove("active");
+
+        } else {
+
+            loginForm.classList.add("d-none");
+
+            signupForm.classList.remove("d-none");
+
+            loginTab.classList.remove("active");
+
+            signupTab.classList.add("active");
+
+        }
+
+    }
+
+
+    function signupUser(event) {
+
+        event.preventDefault();
+
+
+        const user = {
+
+            name:
+                document.getElementById("signupName").value,
+
+            phone:
+                document.getElementById("signupPhone").value,
+
+            email:
+                document.getElementById("signupEmail").value,
+
+            password:
+                document.getElementById("signupPassword").value
+
+        };
+
+
+        localStorage.setItem(
+            "nanaUser",
+            JSON.stringify(user)
+        );
+
+
+        showToast(
+            "Account created successfully.",
+            "success"
+        );
+
+
+        switchAuth("login");
+
+
+        document.getElementById("loginIdentity").value =
+            user.email;
+
+    }
+
+
+    function loginUser(event) {
+
+        event.preventDefault();
+
+
+        const identity =
+            document
+                .getElementById("loginIdentity")
+                .value.trim();
+
+
+        const password =
+            document
+                .getElementById("loginPassword")
+                .value;
+
+
+        const savedUser =
+            JSON.parse(
+                localStorage.getItem("nanaUser")
+            );
+
+
+        if (!savedUser) {
+
+            showToast(
+                "No account found. Please create an account first.",
+                "info"
+            );
+
+            switchAuth("signup");
+
+            return;
+
+        }
+
+
+        const validIdentity =
+            identity === savedUser.email ||
+            identity === savedUser.phone;
+
+
+        if (
+            validIdentity &&
+            password === savedUser.password
+        ) {
+
+            localStorage.setItem(
+                "nanaLoggedIn",
+                "true"
+            );
+
+
+            showToast(
+                `Welcome back, ${savedUser.name}!`,
+                "success"
+            );
+
+
+            bootstrap.Modal
+                .getInstance(
+                    document.getElementById("authModal")
+                )
+                .hide();
+
+        } else {
+
+            showToast(
+                "Email/phone or password is incorrect.",
+                "info"
+            );
+
+        }
+
+    }
+
+
+    function togglePassword(id, button) {
+
+        const input =
+            document.getElementById(id);
+
+
+        if (input.type === "password") {
+
+            input.type = "text";
+
+            button.innerHTML =
+                '<i class="fa-regular fa-eye-slash"></i>';
+
+        } else {
+
+            input.type = "password";
+
+            button.innerHTML =
+                '<i class="fa-regular fa-eye"></i>';
+
+        }
+
+    }
+
+
+    function forgotPassword(event) {
+
+        event.preventDefault();
+
+
+        showToast(
+            "Password reset feature requires backend email service.",
+            "info"
+        );
+
+    }
+
+
+    /* =========================================================
+       CONTACT FORM
+    ========================================================= */
+
+    document
+        .getElementById("contactForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+
+            if (!this.checkValidity()) {
+
+                this.classList.add("was-validated");
+
+                return;
+
+            }
+
+
+            showToast(
+                "Message received. Thank you for contacting NANA.",
+                "success"
+            );
+
+
+            this.reset();
+
+        });
+
+
+    /* =========================================================
+       NEWSLETTER
+    ========================================================= */
+
+    document
+        .getElementById("newsletterForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+
+            showToast(
+                "You're subscribed successfully.",
+                "success"
+            );
+
+
+            this.reset();
+
+        });
+
+
+    /* =========================================================
+       TOAST
+    ========================================================= */
+
+    function showToast(message, type = "success") {
+
+        const container =
+            document.getElementById("toastContainer");
+
+
+        const toast =
+            document.createElement("div");
+
+
+        const icon =
+            type === "success"
+            ? "fa-circle-check"
+            : "fa-circle-info";
+
+
+        toast.className =
+            `toast-custom ${type}`;
+
+
+        toast.innerHTML = `
+
+            <i class="fa-solid ${icon}"></i>
+
+            <span>
+                ${message}
+            </span>
+
+        `;
+
+
+        container.appendChild(toast);
+
+
+        setTimeout(() => {
+
+            toast.style.opacity = "0";
+
+            toast.style.transform =
+                "translateY(10px)";
+
+
+            setTimeout(() => {
+
+                toast.remove();
+
+            }, 300);
+
+        }, 2800);
+
+    }
+
+
+    /* =========================================================
+       NAVBAR
+    ========================================================= */
+
+    function setupNavbar() {
+
+        const navbar =
+            document.getElementById("mainNavbar");
+
+
+        const backTop =
+            document.getElementById("backTop");
+
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 30) {
+
+                navbar.classList.add("scrolled");
+
+            } else {
+
+                navbar.classList.remove("scrolled");
+
+            }
+
+
+            if (window.scrollY > 500) {
+
+                backTop.classList.add("show");
+
+            } else {
+
+                backTop.classList.remove("show");
+
+            }
+
+        });
+
+
+        const sections =
+            document.querySelectorAll(
+                "main section[id]"
+            );
+
+
+        const navLinks =
+            document.querySelectorAll(
+                ".nav-link"
+            );
+
+
+        window.addEventListener("scroll", () => {
+
+            let current = "";
+
+
+            sections.forEach(section => {
+
+                const sectionTop =
+                    section.offsetTop - 130;
+
+
+                if (
+                    window.scrollY >= sectionTop
+                ) {
+
+                    current =
+                        section.getAttribute("id");
+
+                }
+
+            });
+
+
+            navLinks.forEach(link => {
+
+                link.classList.remove("active");
+
+
+                if (
+                    link.getAttribute("href")
+                    === "#" + current
+                ) {
+
+                    link.classList.add("active");
+
+                }
+
+            });
+
+        });
+
+
+        navLinks.forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                const menu =
+                    document.getElementById("mainMenu");
+
+
+                if (
+                    menu.classList.contains("show")
+                ) {
+
+                    bootstrap.Collapse
+                        .getOrCreateInstance(menu)
+                        .hide();
+
+                }
+
+            });
+
+        });
+
+    }
+
+
+    /* =========================================================
+       SCROLL REVEAL
+    ========================================================= */
+
+    function setupReveal() {
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target
+                                .classList
+                                .add("visible");
+
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: .12
+                }
+            );
+
+
+        document
+            .querySelectorAll(".reveal")
+            .forEach(element => {
+
+                observer.observe(element);
+
+            });
+
+    }
+
+
+    /* =========================================================
+       IMAGE ERROR PROTECTION
+    ========================================================= */
+
+    function setupImageFallbacks() {
+
+        document
+            .querySelectorAll("img")
+            .forEach(img => {
+
+                if (img.dataset.fallbackReady) {
+                    return;
+                }
+
+
+                img.dataset.fallbackReady = "true";
+
+
+                img.addEventListener(
+                    "error",
+                    function() {
+
+                        this.classList.add(
+                            "image-error"
+                        );
+
+
+                        this.removeAttribute(
+                            "src"
+                        );
+
+
+                        this.alt =
+                            "NANA product image";
+
+                    }
+                );
+
+            });
+
+    }
+
+
+    /* =========================================================
+       KEYBOARD ESC
+    ========================================================= */
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (event.key === "Escape") {
+
+                closeCart();
+
+                const panel =
+                    document.getElementById(
+                        "searchPanel"
+                    );
+
+
+                panel.style.transform =
+                    "translateY(-100%)";
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
